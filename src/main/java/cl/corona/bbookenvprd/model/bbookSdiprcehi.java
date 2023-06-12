@@ -38,8 +38,8 @@ public class bbookSdiprcehi {
     @Column(name="prc_hdr_from_date" ,columnDefinition = "varchar2(8)")
     protected String prcHdrFromDate;
 
-    @Column(name="prc_hdr_to_date" ,columnDefinition = "date")
-    protected Date prcHdrToDate;
+    @Column(name="prc_hdr_to_date" ,columnDefinition = "varchar2(8)")
+    protected String prcHdrToDate;
 
     @Column(name="prc_source" ,columnDefinition = "number(2)")
     protected Integer prc_source;
@@ -96,7 +96,7 @@ public class bbookSdiprcehi {
 
     public bbookSdiprcehi(Long batchNum, Integer transSequence, String transType, Integer prcHdrNumber,
                           String prcHdrName, Integer capChainId, Integer prcBookNumber, Integer prcType, Integer prcSubType,
-                          String prcHdrFromDate, Date prcHdrToDate, Integer prc_source, String histPrice, String prcTrackHist,
+                          String prcHdrFromDate, String prcHdrToDate, Integer prc_source, String histPrice, String prcTrackHist,
                           String prcHdrNotes, String autoRelease, String dateCreated, Integer rejCode, Date downloadDate1,
                           Date downloadDate2, Long batchNumb, String nombreArchivo, Date fechaStage, Date fechaPermanente,
                           Date fechaBackup, Long idJava) {
@@ -244,12 +244,12 @@ public class bbookSdiprcehi {
     }
 
 
-    public Date getPrcHdrToDate() {
+    public String getPrcHdrToDate() {
         return prcHdrToDate;
     }
 
 
-    public void setPrcHdrToDate(Date prcHdrToDate) {
+    public void setPrcHdrToDate(String prcHdrToDate) {
         this.prcHdrToDate = prcHdrToDate;
     }
 
