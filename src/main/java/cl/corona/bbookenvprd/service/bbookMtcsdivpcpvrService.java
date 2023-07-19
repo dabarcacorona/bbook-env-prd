@@ -12,8 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,8 +43,11 @@ public class bbookMtcsdivpcpvrService {
         try {
 
             // Streams para leer y escribir csv
-            fileWriter = new FileWriter(pathCompletoArchivoResultanteDescarga);
-            csvWriter = new CSVWriterBuilder(fileWriter)
+            //fileWriter = new FileWriter(pathCompletoArchivoResultanteDescarga);
+            //csvWriter = new CSVWriterBuilder(fileWriter)
+            FileOutputStream fos = new FileOutputStream(pathCompletoArchivoResultanteDescarga);
+            OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.ISO_8859_1);
+            csvWriter = new CSVWriterBuilder(osw)
                     .withLineEnd(CSVWriter.DEFAULT_LINE_END)
                     .withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)
                     .withSeparator(ColumnasCsv.charAt(0))

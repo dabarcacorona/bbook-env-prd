@@ -1,8 +1,11 @@
 package cl.corona.bbookenvprd.service;
 
 
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,8 +45,11 @@ public class bbookSdiprdatiService {
         try {
 
             // Streams para leer y escribir csv
-            fileWriter = new FileWriter(pathCompletoArchivoResultanteDescarga);
-            csvWriter = new CSVWriterBuilder(fileWriter)
+            //fileWriter = new FileWriter(pathCompletoArchivoResultanteDescarga);
+            //csvWriter = new CSVWriterBuilder(fileWriter)
+            FileOutputStream fos = new FileOutputStream(pathCompletoArchivoResultanteDescarga);
+            OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.ISO_8859_1);
+            csvWriter = new CSVWriterBuilder(osw)
                     .withLineEnd(CSVWriter.DEFAULT_LINE_END)
                     .withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)
                     .withSeparator(ColumnasCsv.charAt(0))
@@ -55,7 +61,6 @@ public class bbookSdiprdatiService {
             final String[] fieldNamesToWriteIntoCsv = csvBbookSdiprdati.getHeader();
             csvWriter.writeNext(fieldNamesToWriteIntoCsv);
             linesWrittenIntoCsv++;
-
             ResultsToWriteIntoCsv = new ArrayList<>();
 
             try {
@@ -69,6 +74,7 @@ public class bbookSdiprdatiService {
             for(bbookSdiprdati row : ResultsToWriteIntoCsv) {
 
                 final String[] fieldValuesToWriteIntoCsv  = new csvBbookSdiprdati(row).getCsvLine();
+
                 csvWriter.writeNext(fieldValuesToWriteIntoCsv);
                 csvWriter.flush();
                 linesWrittenIntoCsv++;

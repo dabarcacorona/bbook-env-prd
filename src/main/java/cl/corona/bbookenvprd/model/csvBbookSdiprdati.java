@@ -1,6 +1,5 @@
 package cl.corona.bbookenvprd.model;
 
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
